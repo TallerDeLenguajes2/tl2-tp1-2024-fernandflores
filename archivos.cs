@@ -8,7 +8,7 @@ public class archivosCvs
         {
             using (var aux= new StreamReader(archivoOpnen))
             {
-                string linea=aux.ReadLine();
+                string linea=aux.ReadLine(); // salteamos el encabezado
                 while ((linea= aux.ReadLine())!=null)
                 {
                     var items= linea.Split(',');
@@ -30,8 +30,9 @@ public class archivosCvs
                     while((linea=aux.ReadLine())!=null)
                     {
                         var items= linea.Split(',');
-                        var id=int.Parse(items[0].Trim());
-                        cadetes.Add(new Cadete(id,items[1],items[2]));
+                        //var id=int.Parse(items[0].Trim());
+                        var id= Convert.ToInt32(items[0]);
+                        cadetes.Add(new Cadete(id,items[1],items[2], new List<Pedido>()));
                     }
                 }
             }
