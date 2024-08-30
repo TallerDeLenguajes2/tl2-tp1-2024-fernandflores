@@ -4,13 +4,16 @@ public class Pedido
     private string observacion;
     private string estado;
     private Cliente datosCliente;
+    private Cadete cadete;
 
     public string Estado { get => estado; set => estado = value; }
     public string Observacion { get => observacion;}
+    public Cadete Cadete { get => cadete; set => cadete = value; }
+    public int Numero { get => numero;}
 
     public Pedido(int num, string obs, string nombreCliente, string dirCliente, string telCliente, string refCliente)
     {
-        numero=num;
+        this.numero=num;
         observacion=obs;
         Estado= "pendiente";
         datosCliente= new Cliente(nombreCliente,dirCliente,telCliente,refCliente); //agregacion(conexion fuerte entre clases) se instancia dentro del constructor para que datosclientes exista solo si pedidos existe   
@@ -48,30 +51,10 @@ public class Pedido
     }
     public void VerPedido()
     {
-        Console.WriteLine("pedido numero: "+numero);
+        Console.WriteLine("pedido numero: "+Numero);
         Console.WriteLine("observacion del pedido: "+observacion);
     }
-    public Pedido RetornarPedido(List<Pedido> pedidos, int numero)
-    {
-        var aux= new Pedido();
-        bool encontrado=false;
-        foreach (var pedido in pedidos)
-        {
-            if (pedido.numero==numero)
-            {
-                aux= pedido;
-                encontrado=true;
-            }
-        }
-        if(encontrado==true)
-        {
-            return aux;
-        }
-        else
-        {
-            return null;
-        }
-    }
+ 
     public void CambiarDeEstado()
     {
         if (estado=="pendiente")

@@ -32,7 +32,7 @@ public class archivosCvs
                         var items= linea.Split(',');
                         //var id=int.Parse(items[0].Trim());
                         var id= Convert.ToInt32(items[0]);
-                        cadetes.Add(new Cadete(id,items[1],items[2], new List<Pedido>()));
+                        cadetes.Add(new Cadete(id,items[1],items[2]));
                     }
                 }
             }
