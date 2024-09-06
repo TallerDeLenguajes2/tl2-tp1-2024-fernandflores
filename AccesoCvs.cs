@@ -1,4 +1,5 @@
-public class archivosCvs
+using System.Text.Json.Serialization;
+public class AccesoCvs : iAccesosDatos
 {
     public Cadeteria LeerCadeteria(string nombreArchivo) //CREA A PARTIR DEL ARCHIVO JSON.TXT LAS CLASES (DESERIALIZACION)
     {

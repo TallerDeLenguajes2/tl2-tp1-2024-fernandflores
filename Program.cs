@@ -1,12 +1,16 @@
 ﻿using System.Reflection.Emit;
 
-var archivo= new archivosCvs();
+var archivoCvs= new AccesoCvs();
+var archivoJson= new AccesoJson();
 var cadeteria= new Cadeteria();
 var listadePedidos= new List<Pedido>(); // conexion debil, los pedidos existen independientemente del cadete exista o no, entonces se instancia en el program mientras que cliente se instancia en pedido
-cadeteria=archivo.LeerCadeteria("cadeteria.cvs");
 var pedido= new Pedido();
 int opc;
 var menu= new Menu();
+Console.WriteLine("elija como cargar los datos\n1:Json\n2:CVS");
+int opcionArchivo= int.Parse(Console.ReadLine());
+if(opcionArchivo==1)cadeteria=archivoJson.LeerCadeteria("cadeteria.json");
+if(opcionArchivo==2)cadeteria=archivoCvs.LeerCadeteria("cadeteria.cvs");
 do
 {   
      opc=menu.MenuDeOpciones();
@@ -23,7 +27,7 @@ do
             break;
         case 2:
             Console.WriteLine("elija un pedido para asignarlo a un cadete");
-            foreach (var aux in cadeteria.ListaPedidos)
+            foreach (var aux in listadePedidos)
             {
                 Console.WriteLine("------------------------------");
                 aux.VerPedido();

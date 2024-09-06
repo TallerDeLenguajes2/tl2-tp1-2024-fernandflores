@@ -1,4 +1,6 @@
+using System.Net.Mail;
 using System.Runtime.InteropServices;
+using System.Text.Json.Serialization;
 
 public class Cadeteria
 {
@@ -6,8 +8,11 @@ public class Cadeteria
     private string telefono;
     private List<Cadete> listaCadetes;
     private List<Pedido> listaPedidos;
-    public string Nombre { get => nombre;}
-    public string Telefono { get => telefono;  }
+    [JsonPropertyName("nombre")]
+    public string Nombre { get => nombre; set => nombre=value;}
+    [JsonPropertyName("telefono")]
+    public string Telefono { get => telefono; set => telefono=value; }
+   
     public List<Cadete> ListaCadetes { get => listaCadetes;}
     public List<Pedido> ListaPedidos { get => listaPedidos; set => listaPedidos = value; }
 
