@@ -7,7 +7,7 @@ var ListaPedidoSinAsignar= new List<Pedido>();
 cadeteria=archivo.LeerCadeteria("cadeteria.cvs");
 // foreach (var cadete in cadeteria.ListaCadetes)  si no pondria en el constructor: "new List<Pedido>()" de archivos.cs leerCadetes usaria esta parte del codigo para crear las listas vacias a cada cadete
 // {
-//     cadete.ListaPedidos=new List<Pedido>();
+//    // cadete.ListaPedidos=new List<Pedido>();
 // }
 var pedido= new Pedido();
 int opc;
