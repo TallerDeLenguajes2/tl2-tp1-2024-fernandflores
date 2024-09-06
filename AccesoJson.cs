@@ -2,7 +2,7 @@ using System.Text.Json;
 
 public class AccesoJson: iAccesosDatos
 {
-    public Cadeteria LeerCadeteria(string nombreArchivo)
+    public Cadeteria LeerCadeteria(string nombreArchivo, List<Pedido> pedidos)
     {
         string cadenaCadeteria;
         string ruta="archivos/"+nombreArchivo;
@@ -15,7 +15,7 @@ public class AccesoJson: iAccesosDatos
             }
         }
         var cadeteriaAux= JsonSerializer.Deserialize<Cadeteria>(cadenaCadeteria);
-        var cadeteria= new Cadeteria(cadeteriaAux.Nombre, cadeteriaAux.Telefono, LeerCadetes("cadetes.json"));
+        var cadeteria= new Cadeteria(cadeteriaAux.Nombre, cadeteriaAux.Telefono, LeerCadetes("cadetes.json"),pedidos);
         return cadeteria;
     }
     public List<Cadete> LeerCadetes(string nombreArchivo)

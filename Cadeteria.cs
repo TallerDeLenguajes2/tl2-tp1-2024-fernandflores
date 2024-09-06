@@ -20,11 +20,12 @@ public class Cadeteria
     {
     }
 
-    public Cadeteria(string nombre, string telefono, List<Cadete>listaCadetes)
+    public Cadeteria(string nombre, string telefono, List<Cadete>listaCadetes, List<Pedido>listaPedidos)
     {
         this.nombre=nombre;
         this.telefono=telefono;
         this.listaCadetes=listaCadetes;
+        this.listaPedidos= listaPedidos;
     }
      public Cadete RetornarCadete(int identificacion)
     {

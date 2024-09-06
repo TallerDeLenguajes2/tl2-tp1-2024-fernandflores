@@ -9,8 +9,8 @@ int opc;
 var menu= new Menu();
 Console.WriteLine("elija como cargar los datos\n1:Json\n2:CVS");
 int opcionArchivo= int.Parse(Console.ReadLine());
-if(opcionArchivo==1)cadeteria=archivoJson.LeerCadeteria("cadeteria.json");
-if(opcionArchivo==2)cadeteria=archivoCvs.LeerCadeteria("cadeteria.cvs");
+if(opcionArchivo==1)cadeteria=archivoJson.LeerCadeteria("cadeteria.json", listadePedidos);
+if(opcionArchivo==2)cadeteria=archivoCvs.LeerCadeteria("cadeteria.cvs", listadePedidos);
 do
 {   
      opc=menu.MenuDeOpciones();
@@ -27,7 +27,7 @@ do
             break;
         case 2:
             Console.WriteLine("elija un pedido para asignarlo a un cadete");
-            foreach (var aux in listadePedidos)
+            foreach (var aux in cadeteria.ListaPedidos)// tambien se puede usar solo listapedidos sin el cadeteria. ya que cadeteria.listadopedidos "apunta" a esa lista (listadoPedidos)
             {
                 Console.WriteLine("------------------------------");
                 aux.VerPedido();

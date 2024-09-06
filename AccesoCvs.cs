@@ -1,7 +1,7 @@
 using System.Text.Json.Serialization;
 public class AccesoCvs : iAccesosDatos
 {
-    public Cadeteria LeerCadeteria(string nombreArchivo) //CREA A PARTIR DEL ARCHIVO JSON.TXT LAS CLASES (DESERIALIZACION)
+    public Cadeteria LeerCadeteria(string nombreArchivo, List<Pedido>pedidos) //CREA A PARTIR DEL ARCHIVO JSON.TXT LAS CLASES (DESERIALIZACION)
     {
         var cadeteria= new Cadeteria();
         string ruta= "archivos/"+nombreArchivo;
@@ -13,7 +13,7 @@ public class AccesoCvs : iAccesosDatos
                 while ((linea= aux.ReadLine())!=null)
                 {
                     var items= linea.Split(',');
-                    cadeteria= new Cadeteria(items[0],items[1],LeerCadetes("cadetes.cvs"));
+                    cadeteria= new Cadeteria(items[0],items[1],LeerCadetes("cadetes.cvs"), pedidos);
                 }
             }
         }
