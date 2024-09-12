@@ -27,10 +27,10 @@ do
             break;
         case 2:
             Console.WriteLine("elija un pedido para asignarlo a un cadete");
-            foreach (var aux in cadeteria.ListaPedidos)// tambien se puede usar solo listapedidos sin el cadeteria. ya que cadeteria.listadopedidos "apunta" a esa lista (listadoPedidos)
+            foreach (var aux in cadeteria.ListaPedidos.Where(p=>p.Cadete==null))// tambien se puede usar solo listapedidos sin el cadeteria. ya que cadeteria.listadopedidos "apunta" a esa lista (listadoPedidos)
             {
                 Console.WriteLine("------------------------------");
-                Console.WriteLine(aux); 
+                Console.WriteLine(aux); //usa el .tostring para mostrar
                 Console.WriteLine("------------------------------");
             }
             int.TryParse(Console.ReadLine(), out int num);
@@ -38,7 +38,7 @@ do
             foreach (var cadete in cadeteria.ListaCadetes)
             {
                 Console.WriteLine("------------------------------");
-                Console.WriteLine(cadete);
+                Console.WriteLine(cadete); //usa el .tostring para mostrar
                 Console.WriteLine("------------------------------");
             }
             int.TryParse(Console.ReadLine(), out int idcadete);
@@ -46,14 +46,42 @@ do
             break;
         case 3:
             Console.WriteLine("seleccione el pedido al que le cambiara el estado"); 
-            foreach (var item in listadePedidos)
+            foreach (var item in listadePedidos.Where(p=>p.Cadete!=null))
+            {
+                Console.WriteLine(item); // usa para mostrar el .tostring
+                if(item.Cadete!=null)
+                {
+                    Console.WriteLine("cadete a cargo: "+item.Cadete.Nombre);
+                }
+                else
+                {
+                    Console.WriteLine("no tiene asignacion");
+                }
+            }
+            int.TryParse(Console.ReadLine(), out num);
+
+            if(!cadeteria.CambiarEstadoPedido(num))Console.WriteLine("no se encontro el pedido o no existe"); 
+            break;
+        case 4: 
+            Console.WriteLine("seleccione el pedido al que le cambiara el estado"); 
+            foreach (var item in listadePedidos.Where(p=>p.Cadete!=null))
             {
                 Console.WriteLine(item);
                 Console.WriteLine("cadete a cargo: "+item.Cadete.Nombre);
             }
             int.TryParse(Console.ReadLine(), out num);
-
-            if(!cadeteria.CambiarEstadoPedido(num))Console.WriteLine("no se encontro el pedido o no existe"); 
+            Console.WriteLine("elija un cadete al que reasignara el pedido seleccionado");
+            foreach (var cadete in cadeteria.ListaCadetes)
+            {
+                Console.WriteLine("------------------------------");
+                Console.WriteLine(cadete);
+                Console.WriteLine("------------------------------");
+            }
+            int.TryParse(Console.ReadLine(), out  idcadete);
+            cadeteria.AsignarPedidoACadet(idcadete,num);
+            break;
+        case 5: 
+            Funciones.Informe(cadeteria);
             break;
         default:
             Console.WriteLine("opcion erronea");

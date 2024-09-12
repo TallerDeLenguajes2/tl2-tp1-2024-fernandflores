@@ -25,7 +25,7 @@ public class Cadeteria
         this.nombre=nombre;
         this.telefono=telefono;
         this.listaCadetes=listaCadetes;
-        this.listaPedidos= listaPedidos;
+        this.ListaPedidos= listaPedidos;
     }
      public Cadete RetornarCadete(int identificacion)
     {
@@ -52,7 +52,7 @@ public class Cadeteria
     {
         var aux= new Pedido();
         bool encontrado=false;
-        foreach (var pedido in listaPedidos)
+        foreach (var pedido in ListaPedidos)
         {
             if (pedido.Numero==numero)
             {
@@ -77,7 +77,7 @@ public class Cadeteria
     public int JornalACobrar(int id)
     { 
         int monto=0;
-        foreach (var pedido in listaPedidos)
+        foreach (var pedido in ListaPedidos)
         {
             if (id==RetornarCadete(id).Id)
             {
@@ -99,7 +99,7 @@ public class Cadeteria
 
     public bool CambiarEstadoPedido(int numPedido)
     {
-        foreach (var item in listaPedidos)
+        foreach (var item in ListaPedidos)
         {
             if(item.Numero==numPedido)
             {
@@ -109,4 +109,5 @@ public class Cadeteria
         }
         return false;
     }
+    // TRABAJAMOS CON EL INFORME
 }

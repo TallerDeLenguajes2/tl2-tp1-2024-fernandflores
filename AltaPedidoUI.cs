@@ -1,6 +1,6 @@
 public static class AltaPedidoUI
 {
-
+public static int i=0;
     public static Pedido AltaPedido()
     {
         string observacion, direccion, tel, referencia, nombre;
@@ -14,8 +14,8 @@ public static class AltaPedidoUI
         referencia=Console.ReadLine();
         Console.WriteLine("ingrese un numero de telefono");
         tel= Console.ReadLine();
-  
-        var pedido= new Pedido(observacion,nombre,direccion,tel,referencia);
+        i++;
+        var pedido= new Pedido(i,observacion,nombre,direccion,tel,referencia);
         return pedido;
     }
 }
