@@ -20,11 +20,11 @@ public class Cadeteria
         this.telefono=telefono;
         this.listaCadetes=listaCadetes;
     }
-    public int MontoSueldos()
-    {
-        int monto=ListaCadetes.Count*500;
-        return monto;
-    }
+    // public int MontoSueldos()
+    // {
+    //     int monto=ListaCadetes.Count*500;
+    //     return monto;
+    // }
     public void AsignarPedidoACadete(List<Pedido> listadoPedidos)
     {
         Console.WriteLine("elija un pedido");
@@ -49,5 +49,26 @@ public class Cadeteria
         cadeteAsignado= cadeteAsignado.RetornarCadete(idcadete, listaCadetes);
         cadeteAsignado.ListaPedidos.Add(pedidoSinAsignar);
         listadoPedidos.Remove(pedidoSinAsignar); // lo quitamos de la lista pues ya esta asignado
+    }
+    public int CantidadDePedidosEntregados(int idCadete)
+    {
+        var cadete= listaCadetes.Find(p=>p.Id == idCadete );
+        return cadete.ListaPedidos.Count;
+    }
+    public void Informe()
+    {
+        int pedidos, monto, totalPedidos=0, totalMonto=0;
+        foreach (var cadete in ListaCadetes)
+        {
+            pedidos= CantidadDePedidosEntregados(cadete.Id);
+            monto= cadete.JornalACobrar(pedidos);
+            totalPedidos+=pedidos;
+            totalMonto+=monto;
+            Console.WriteLine("cadete: "+cadete.Nombre);
+            Console.WriteLine("pedidos entregados: "+ pedidos);
+            Console.WriteLine("monto a pagar al cadete: "+ monto);
+        }
+        Console.WriteLine("pedidos totales entregados: "+ totalPedidos);
+        Console.WriteLine("monto total: "+totalMonto);
     }
 }

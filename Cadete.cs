@@ -8,6 +8,7 @@ public class Cadete
     public string Nombre { get => nombre; }
     public string Tel { get => tel;  }
     public List<Pedido> ListaPedidos { get => listaPedidos; set => listaPedidos = value; }
+    public int Id { get => id; }
 
     public Cadete(int id, string nombre, string tel, List<Pedido>listaPedidos)
     {
@@ -21,15 +22,14 @@ public class Cadete
     {
     }
 
-    public int JornalACobrar()
+    public int JornalACobrar(int cantidadDePedidos)
     {
         int ganancia=500;
-        int cantidadDePedidos= ListaPedidos.Count;
         return (ganancia*cantidadDePedidos);
     }
     public void VerDatosCadete()
     {
-        Console.WriteLine("id: "+id);
+        Console.WriteLine("id: "+Id);
         Console.WriteLine("nombre: "+nombre);
         Console.WriteLine("tel: "+tel);
     }
@@ -39,7 +39,7 @@ public class Cadete
         bool encontrado=false;
         foreach (var cadete in listaCad)
         {
-            if (cadete.id==identificacion)
+            if (cadete.Id==identificacion)
             {
                 aux= cadete;
                 encontrado=true;
