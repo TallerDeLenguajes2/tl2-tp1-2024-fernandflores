@@ -19,6 +19,13 @@ public class Pedido
         datosCliente= new Cliente(nombreCliente,dirCliente,telCliente,refCliente); //agregacion(conexion fuerte entre clases) se instancia dentro del constructor para que datosclientes exista solo si pedidos existe   
     }
 
+      public Pedido(string obs, string nombreCliente, string dirCliente, string telCliente, string refCliente)
+    {
+        observacion=obs;
+        Estado= "pendiente";
+        datosCliente= new Cliente(nombreCliente,dirCliente,telCliente,refCliente); //agregacion(conexion fuerte entre clases) se instancia dentro del constructor para que datosclientes exista solo si pedidos existe   
+    }
+
     public Pedido()
     {
     }
@@ -49,12 +56,11 @@ public class Pedido
         var pedido= new Pedido(num,observacion,nombre,direccion,tel,referencia);
         return pedido;
     }
-    public void VerPedido()
+
+    public override string ToString()
     {
-        Console.WriteLine("pedido numero: "+Numero);
-        Console.WriteLine("observacion del pedido: "+observacion);
+        return "pedido numero: "+Numero+"\nobservacion del pedido: "+observacion;
     }
- 
     public void CambiarDeEstado()
     {
         if (estado=="pendiente")

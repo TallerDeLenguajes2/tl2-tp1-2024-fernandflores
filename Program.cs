@@ -22,7 +22,7 @@ do
             Thread.Sleep(4000);
             break;
         case 1: 
-            pedido= pedido.AltaPedido(listadePedidos.Count);
+            pedido= AltaPedidoUI.AltaPedido();
             listadePedidos.Add(pedido);
             break;
         case 2:
@@ -30,7 +30,7 @@ do
             foreach (var aux in cadeteria.ListaPedidos)// tambien se puede usar solo listapedidos sin el cadeteria. ya que cadeteria.listadopedidos "apunta" a esa lista (listadoPedidos)
             {
                 Console.WriteLine("------------------------------");
-                aux.VerPedido();
+                Console.WriteLine(aux); 
                 Console.WriteLine("------------------------------");
             }
             int.TryParse(Console.ReadLine(), out int num);
@@ -38,7 +38,7 @@ do
             foreach (var cadete in cadeteria.ListaCadetes)
             {
                 Console.WriteLine("------------------------------");
-                cadete.VerDatosCadete();
+                Console.WriteLine(cadete);
                 Console.WriteLine("------------------------------");
             }
             int.TryParse(Console.ReadLine(), out int idcadete);
@@ -48,20 +48,12 @@ do
             Console.WriteLine("seleccione el pedido al que le cambiara el estado"); 
             foreach (var item in listadePedidos)
             {
-                item.VerPedido();
+                Console.WriteLine(item);
                 Console.WriteLine("cadete a cargo: "+item.Cadete.Nombre);
             }
             int.TryParse(Console.ReadLine(), out num);
-            bool findCambioEstado=false;
-            foreach (var item in listadePedidos)
-            {
-                if(item.Numero==num)
-                {
-                    item.CambiarDeEstado();
-                    findCambioEstado=true;
-                }
-            }
-            if (!findCambioEstado)Console.WriteLine("no se encontro el pedido o no existe"); 
+
+            if(!cadeteria.CambiarEstadoPedido(num))Console.WriteLine("no se encontro el pedido o no existe"); 
             break;
         default:
             Console.WriteLine("opcion erronea");

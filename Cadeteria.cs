@@ -96,4 +96,17 @@ public class Cadeteria
         pedidoSinAsignar.Cadete=cadeteAsignado;
         //listadoPedidos.Remove(pedidoSinAsignar); // lo quitamos de la lista pues ya esta asignado
     }
+
+    public bool CambiarEstadoPedido(int numPedido)
+    {
+        foreach (var item in listaPedidos)
+        {
+            if(item.Numero==numPedido)
+            {
+                item.CambiarDeEstado();
+                return true;
+            }
+        }
+        return false;
+    }
 }

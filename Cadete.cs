@@ -24,10 +24,8 @@ public class Cadete
     {
     }
     //public override string ToString() // hacer que retorne la cadena de caracteres
-    public void VerDatosCadete()
+    public override string ToString()
     {
-        Console.WriteLine("id: "+Id);
-        Console.WriteLine("nombre: "+nombre);
-        Console.WriteLine("tel: "+tel);
+        return ("id: "+id +"\nnombre: "+nombre+"\ntel: "+tel);
     }
 }
